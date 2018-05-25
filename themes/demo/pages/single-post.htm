@@ -1,0 +1,59 @@
+title = "Single post"
+url = "/single-post/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = 404
+
+[PostBreadCrumbs]
+categoryPage = "category"
+postSlug = "{{ :slug }}"
+
+==
+{% set post = blogPost.post %}
+    <!-- Page Content -->
+    <div class="container" style="margin: 30px;">
+
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8 col-lg-offset-2">
+        {% component 'PostBreadCrumbs' %}
+        <br>
+
+          <!-- Title -->
+          <h3 class="mt-4">{{ post.title }}</h3>
+
+          <!-- Author -->
+          <p class="lead">
+            {% if post.categories.count %} in
+                {% for category in post.categories %}
+                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+          </p>
+
+          <hr>
+
+          <!-- Date/Time -->
+          <p>Posted on {{ post.published_at|date('M d, Y') }}</p>
+
+          <hr>
+
+          <!-- Post Content -->
+          <div class="content">{{ post.content_html|raw }}</div>
+
+          <hr>
+
+
+        </div>
+
+
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->

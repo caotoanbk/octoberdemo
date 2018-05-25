@@ -1,0 +1,6 @@
+plugin:
+    name: 'mangoo.ui::lang.plugin.name'
+    description: 'mangoo.ui::lang.plugin.description'
+    author: Mangoo
+    icon: oc-icon-adjust
+    homepage: ''
