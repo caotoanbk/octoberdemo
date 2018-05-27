@@ -1,0 +1,38 @@
+<?= Form::open(['class'=>'layout']) ?>
+
+<div class="layout-row">
+    <?= $this->formRender() ?>
+</div>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <?php if ($this->user->hasAccess('buzzwordcompliant.dbcontent.edit_static_block')): ?>
+        <button
+                type="button"
+                data-request="onSave"
+                data-request-data="close:true"
+                data-hotkey="ctrl+enter, cmd+enter"
+                data-load-indicator="Saving static block..."
+                class="btn btn-default">
+            Save and Close
+        </button>
+        <?php endif; ?>
+
+        <?php if ($this->user->hasAccess('buzzwordcompliant.dbcontent.edit_static_block') &&
+        $this->user->hasAccess('buzzwordcompliant.dbcontent.delete_static_block')): ?>
+        <button
+                type="button"
+                class="oc-icon-trash-o btn-icon danger pull-right"
+                data-request="onDelete"
+                data-load-indicator="Deleting static block..."
+                data-request-confirm="Do you really want to delete this block?">
+        </button>
+        <?php endif; ?>
+
+        <span class="btn-text">
+                <a href="<?= Backend::url('buzzwordcompliant/dbcontent/staticblocks') ?>">Back to list</a>
+        </span>
+    </div>
+</div>
+
+<?= Form::close() ?>
